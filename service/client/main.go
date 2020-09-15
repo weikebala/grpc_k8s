@@ -6,11 +6,12 @@ import (
 	"log"
 	"os"
 	"prototest/test"
+	"time"
 )
 
 func main() {
 	// 建立连接到gRPC服务
-	conn, err := grpc.Dial("grpcServer:8028", grpc.WithInsecure())
+	conn, err := grpc.Dial("grpcK8sServer:8028", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
@@ -18,7 +19,7 @@ func main() {
 	defer conn.Close()
 
 	// 创建Waiter服务的客户端
-	t := test.NewWaiterClient(conn)
+	client := test.NewWaiterClient(conn)
 
 	// 模拟请求数据
 	res := "test123"
@@ -28,9 +29,13 @@ func main() {
 	}
 
 	// 调用gRPC接口
-	tr, err := t.DoMD5(context.Background(), &test.Req{JsonStr: res})
-	if err != nil {
-		log.Fatalf("could not greet: %v", err)
+	ticker := time.NewTicker(3 * time.Second)
+	for _ = range ticker.C {
+		tr, err := client.DoMD5(context.Background(), &test.Req{JsonStr: res})
+		if err != nil {
+			log.Fatalf("could not greet: %v", err)
+		}
+		log.Printf("服务端响应: %s", tr.BackJson)
 	}
-	log.Printf("服务端响应: %s", tr.BackJson)
+
 }

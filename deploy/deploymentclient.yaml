@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: grpcK8sClient
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svc-grpck8scient
+  template:
+    metadata:
+      labels:
+        app: svc-grpck8scient
+    spec:
+      containers:
+        - name: grpc_k8s_client
+          image: weikebala/grpc_k8s_client
+          imagePullPolicy: IfNotPresent
