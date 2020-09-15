@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: default
-  name: grpcK8sClient
+  name: grpc-K8s-Client
 spec:
   replicas: 1
   selector:
@@ -14,6 +14,6 @@ spec:
         app: svc-grpck8scient
     spec:
       containers:
-        - name: grpc_k8s_client
+        - name: grpc-k8s-client
           image: weikebala/grpc_k8s_client
           imagePullPolicy: IfNotPresent
