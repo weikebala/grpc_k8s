@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: grpc-K8s-Server
+  name: grpc-k8s-server
   labels:
     app: svc-grpck8sserver
 spec:
@@ -16,7 +16,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: default
-  name: grpc-K8s-Server
+  name: grpc-k8s-server
 spec:
   replicas: 1
   selector:

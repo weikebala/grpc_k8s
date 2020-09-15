@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: default
-  name: grpc-K8s-Client
+  name: grpc-k8s-client
 spec:
   replicas: 1
   selector:
