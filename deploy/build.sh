@@ -18,7 +18,7 @@ build_service() {
 # 打包镜像
 build_image() {
     # 替换(hub.fileserver.com/filestore/$service), 自定义镜像名即可
-    docker build -t grpc_k8s/$1 -f ./service/$1/Dockerfile .
+    docker build -t weikebala/grpc_k8s_$1 -f ./service/$1/Dockerfile .
     echo -e "\033[32m镜像打包完成: \033[0m hub.fileserver.com/filestore/$1\n"
 }
 
