@@ -11,7 +11,7 @@ import (
 
 func main() {
 	// 建立连接到gRPC服务
-	conn, err := grpc.Dial("172.17.91.2:8028", grpc.WithInsecure())
+	conn, err := grpc.Dial("10.254.211.78:8028", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
